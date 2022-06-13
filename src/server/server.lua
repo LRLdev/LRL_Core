@@ -10,14 +10,9 @@ function LRL.Functions.TriggerCallback(name, source, cb, ...)
     LRL.ServerCallbacks[name](source, cb, ...)
 end
 
-RegisterNetEvent('LRL:Server:TriggerCallback', function(name, ...)
+RegisterNetEvent('LRLs:TriggerCallback', function(name, ...)
     local src = source
     LRL.Functions.TriggerCallback(name, src, function(...)
         TriggerClientEvent('LRL:Client:TriggerCallback', src, name, ...)
     end, ...)
-end)
-
-LRL.Functions.CreateCallback('LRL:server:teste', function(source, cb)
-    local src = source
-    print(json.encode(src))
 end)

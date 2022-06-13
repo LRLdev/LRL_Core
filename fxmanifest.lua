@@ -6,10 +6,8 @@ author 'Lucas Leite | LRLeite#1911'
 description 'CORE responsible for the translation and the compatibility with different types of frameworks'
 
 client_scripts {
-    'src/client/*',
-    'src/client/clientMain.lua',
-    'src/client/player.lua',
-    'src/client/main.lua'
+    'src/client/*.lua',
+
 }
 
 server_scripts {

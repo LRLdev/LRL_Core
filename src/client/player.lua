@@ -8,10 +8,3 @@ function LRL.Player.GetCoords()
     return vector4(coords.x, coords.y, coords.z, heading)
 end
 
-RegisterNetEvent('LRL:Client:TriggerCallback', function(name, ...)
-    if LRL.ServerCallbacks[name] then
-        LRL.ServerCallbacks[name](...)
-        LRL.ServerCallbacks[name] = nil
-    end
-end)
-
