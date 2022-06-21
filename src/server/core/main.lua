@@ -3,7 +3,9 @@ LRL.Config = QBConfig
 LRL.Shared = QBShared
 LRL.ServerCallbacks = {}
 LRL.UseableItems = {}
+LRL.Server = {}
+LRL.Player = {}
 
-exports('GetCoreObject', function()
+exports('initCore', function()
     return LRL
 end)
