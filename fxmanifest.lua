@@ -9,7 +9,6 @@ client_scripts {
     'src/client/core/main.lua',
     'src/client/core/client.lua',
     'src/client/functions/player.lua',
-   
 }
 
 server_scripts {
