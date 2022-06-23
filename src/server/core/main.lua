@@ -6,6 +6,8 @@ LRL.UseableItems = {}
 LRL.Server = {}
 LRL.Player = {}
 
+
+
 framework = nil
 
 exports('initCore', function()
@@ -20,21 +22,17 @@ function Init()
         ["bahamas"] = "summerz_characters",
     }
 
-
-    CreateThread(function()
-        for k, v in pairs(databases) do
-            local result = MySQL.single.await('show tables like @framework', { framework = v })
-            if(result) then
-                framework = k
+    for k, v in pairs(databases) do
+        local result = MySQL.single.await('show tables like @framework', { framework = v })
+        if(result) then
+            framework = k
             
-            end
-        end        
-        assert(framework~=nil, '[LRL] Database nao encontrado')
-    end)
- 
-   
+        end
+    end
+    print('[LRL] Core Initialized '..framework)       
+    assert(framework~=nil, '[LRL] Database nao encontrado')
+
 end
 
 
-
-Init()
+CreateThread(Init)
