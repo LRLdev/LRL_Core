@@ -1,6 +1,5 @@
 -- GetUserIdentity
 -- Returns the user identity of the player.
-
 function LRL.Server.GetUserIdentity(player_id)
     local result = MySQL.single.await(queries[framework]['get_identity'],{ player_id })
    
@@ -18,13 +17,14 @@ function LRL.Server.GetUserIdentity(player_id)
     end
 end
 
-function LRL.Server.GetUserFines(player_id)
-    local count = 0
-    local result = MySQL.single.await(queries[framework]['get_fines'],{ id = player_id })
-  
-    if result then
-        return result.multas
-    else
-        error("[LRL] Nao foi possivel obter as multas do jogador")
+function LRL.Player.HasPermission(user_id,permission)
+    local result =  LRL.Server.GetUserDatatable(user_id)    
+
+    for k,v in pairs(result.permission) do
+        if k==permission then
+            return true
+        end
     end
+    
+    return false
 end
