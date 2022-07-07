@@ -48,7 +48,6 @@ function LRL.Player.IsPlayerDead()
 end
 
 function LRL.Player.CreateObject(model, bone, off1, off2, off3, rot1, rot2, rot3)
-    print(model)
     assert(model~=nil, "LRL.Player.CreateObject: modelo nulo")
     assert(bone~=nil, "LRL.Player.CreateObject: bone nulo")
 
@@ -98,4 +97,8 @@ function LRL.Player.StopAnim(animDict)
     
     ClearPedTasks(PlayerPedId())
     ClearPedSecondaryTask(PlayerPedId())
+end
+
+function LRL.Player.PlaySound(soundId, audioName, audioRef, p3, p4, p5)
+    PlaySoundFrontend(-1, soundId,audioName, 0)
 end
