@@ -26,3 +26,38 @@ function LRL.Server.SetUserFines(player_id,value)
         error("[LRL] Nao foi possivel atualizar as multas do jogador")
     end
 end
+
+
+--
+function LRL.Server.AddUserMoney(player_id,value)
+    local result = MySQL.query.await(queries[framework]['add_user_money'],{ bank = value, id = player_id })
+
+    if result then
+        return true
+    else
+        error("[LRL] Nao foi adicionar dinheiro no banco do player")
+    end
+end
+
+function LRL.Server.GetUserBank(player_id)
+    local result = MySQL.query.await(queries[framework]['get_user_money'],{ id = player_id })
+
+    if result then
+        return true
+    else
+        error("[LRL] Nao foi adicionar dinheiro no banco do player")
+    end
+end
+
+function LRL.Server.RemoveUserMoney(user_id,value)
+    assert(user_id, '[LRL] TryFullPayment - User_id não definido')
+    assert(value, '[LRL] TryFullPayment - Value não definido')
+
+    local result = MySQL.query.await(queries[framework]['del_user_money'],{ bank = value, id = user_id })
+
+    if result then
+        return true
+    else
+        error("[LRL] Nao foi possivel remover dinheiro do banco do player. ID: "..user_id.." Valor: "..value)
+    end
+end
