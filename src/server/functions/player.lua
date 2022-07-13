@@ -2,7 +2,7 @@
 -- Returns the user identity of the player.
 function LRL.Server.GetUserIdentity(player_id)
     local result = MySQL.single.await(queries[framework]['get_identity'],{ player_id })
-   
+    
     local identity = {}
     if result then
         identity = {
@@ -18,13 +18,88 @@ function LRL.Server.GetUserIdentity(player_id)
 end
 
 function LRL.Player.HasPermission(user_id,permission)
-    local result =  LRL.Server.GetUserDatatable(user_id)    
 
-    for k,v in pairs(result.permission) do
-        if k==permission then
-            return true
+    local result =  LRL.Server.GetUserDatatable(user_id)   
+    local dataPermission = result["permission"] or result["perm"] or {}
+
+    if result~=nil then
+        for k,v in pairs(dataPermission) do
+            if k==permission then
+                return true
+            end
         end
     end
     
     return false
+end
+
+function LRL.Player.SetPermission(user_id, permission)
+    local result =  LRL.Server.GetUserDatatable(user_id)
+
+    permission = tostring(permission)
+    if result then
+        if framework=="crv5" then
+            if result["perm"] == nil then
+                result["perm"] = {}
+            end
+    
+            if result["perm"][permission] == nil then
+                result["perm"][permission] = true
+            end
+        elseif framework=="bahamas" then
+            
+            if result["permission"] == nil then
+                result["permission"] = {}
+            end
+    
+            if result["permission"][permission] == nil then
+                result["permission"][permission] = true
+            end
+        end        
+       
+        LRL.Server.SetUserData(user_id,"Datatable",json.encode(result))
+    else
+        error("[LRL] SetPermission - Não foi possivel recuperar o datatable")
+    end
+
+end
+
+function LRL.Player.RemovePermission(user_id, permission)
+    local result = LRL.Server.GetUserDatatable(user_id)
+
+    permission = tostring(permission)
+
+    if result then
+        if framework=="crv5"then
+            if result["perm"] then
+                if result["perm"][permission] then
+                    result["perm"][permission] = nil
+                end
+            end
+
+        elseif framework =="bahamas" then
+            if result["permission"] then
+                if result["permission"][permission] then
+                    result["permission"][permission] = nil
+                end
+            end
+        end
+        LRL.Server.SetUserData(user_id,"Datatable",json.encode(result))
+    else
+        error("[LRL] RemovePermission - Não foi possivel recuperar o datatable")
+    
+    end
+end
+
+function LRL.Player.AddPrison(player_id,value)
+    assert(player_id, '[LRL] Prison - Player_id não definido')
+    assert(value, '[LRL] Prison - Value não definido')
+
+    local result = MySQL.query.await(queries[framework]['add_prison'],{ prison = value, user_id = player_id })
+   
+    if result then
+        return true
+    else
+        error("[LRL] Nao foi possivel adicionar multas ao jogador")
+    end
 end
