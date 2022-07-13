@@ -22,7 +22,6 @@ function LRL.Player.SetUserHealth(health)
     SetEntityHealth(source, health)
 end
 
-
 -- GetUserArmor
 -- Returns the user armor of the player.
 function LRL.Player.GetUserArmor(source)
