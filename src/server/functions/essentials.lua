@@ -35,11 +35,22 @@ function LRL.Server.GetUserDatatable(user_id)
     return datatable
 end
 
+function LRL.Server.SetUserData(user_id,key,value)
+    local result = MySQL.query.await(queries[framework]['set_user_data'],{ user_id = user_id, key = key, value = value })
+
+    if result then
+        return true
+    else
+        error("[LRL] Erro - SetUserData.")
+    end
+
+end
+
 function LRL.Server.GetServerData(key)
-    local result = MySQL.single.await(queries[framework]['get_server_data'],{ key = key })
+    local result = MySQL.single.await(queries[framework]['get_server_data'],{ dkey = key })
     
     if result then
-        return json.decode(result)
+        return type(result)=="table" and result or json.decode(result)
     end
 end
 
