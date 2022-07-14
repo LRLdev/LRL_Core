@@ -1,4 +1,4 @@
-LRL.Functions.CreateCallback('LRLs:teste', function(source, cb)
+LRL.Functions.CreateCallback('LRLs:teste', function(source, cb) -- Devo utilizar no futuro
     local src = source
-    print(json.encode(src))
+    print("[LRL] Teste")
 end)

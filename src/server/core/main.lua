@@ -1,6 +1,4 @@
 LRL = {}
-LRL.Config = QBConfig
-LRL.Shared = QBShared
 LRL.ServerCallbacks = {}
 LRL.UseableItems = {}
 LRL.Server = {}
@@ -20,9 +18,7 @@ function Init()
     local databases = {
         ["crv5"] = "summerz_fidentity",
         ["vRP"] = "vrp_user_identities",
-        
         ["bahamas"] = "summerz_characters",
-        
     }
 
     local tablesFind = {}
@@ -43,8 +39,6 @@ function Init()
                 break
             end
         end
-        
-
     else
         for k,v in pairs(databases) do 
             for a,b in pairs(tablesFind) do
@@ -57,13 +51,11 @@ function Init()
         end
     end
     
-
-    
-  
-    print('[LRL] Core Initialized '..framework)       
+    print('[LRL] Core Initialized.')   
+    print('[LRL] Framework: '..framework)   
     assert(framework~=nil, '[LRL] Database nao encontrado')
 
 end
 
 
-CreateThread(Init)
+CreateThread(Init) -- Initilize the core

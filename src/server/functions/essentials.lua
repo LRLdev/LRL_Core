@@ -24,7 +24,7 @@ end
 -- @param user_id The user id.
 -- @returns The user datatable.
 function LRL.Server.GetUserDatatable(user_id)
-    
+    assert(user_id, '[LRL] User_id não definido')
     local result = MySQL.single.await(queries[framework]['get_user_datatable'],{ user_id = 1 })
     
     local datatable = {}

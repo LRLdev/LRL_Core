@@ -2,6 +2,7 @@
 -- Returns the user fines of the player.
 -- @param player_id The player id.
 function LRL.Server.GetUserFines(player_id)
+    assert(player_id, '[LRL] Player_id não definido')
     local count = 0
     local result = MySQL.single.await(queries[framework]['get_fines'],{ id = player_id })
   
@@ -18,6 +19,8 @@ end
 -- @param player_id The player id.
 -- @param value The value of the fines.
 function LRL.Server.SetUserFines(player_id,value)
+    assert(player_id, '[LRL] Player_id não definido')
+    assert(value, '[LRL] Value não definido')
     local result = MySQL.query.await(queries[framework]['set_fines'],{ fines = value, id = player_id })
 
     if result then
@@ -30,6 +33,8 @@ end
 
 --
 function LRL.Server.AddUserMoney(player_id,value)
+    assert(player_id, '[LRL] Player_id não definido')
+    assert(value, '[LRL] Value não definido')
     local result = MySQL.query.await(queries[framework]['add_user_money'],{ bank = value, id = player_id })
 
     if result then
@@ -40,6 +45,8 @@ function LRL.Server.AddUserMoney(player_id,value)
 end
 
 function LRL.Server.GetUserBank(player_id)
+    assert(player_id, '[LRL] Player_id não definido')
+    
     local result = MySQL.query.await(queries[framework]['get_user_money'],{ id = player_id })
 
     if result then

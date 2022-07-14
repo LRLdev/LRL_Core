@@ -1,6 +1,7 @@
 -- GetUserIdentity
 -- Returns the user identity of the player.
 function LRL.Server.GetUserIdentity(player_id)
+    assert(player_id, '[LRL] Player_id não definido')
     local result = MySQL.single.await(queries[framework]['get_identity'],{ player_id })
     
     local identity = {}
@@ -18,6 +19,8 @@ function LRL.Server.GetUserIdentity(player_id)
 end
 
 function LRL.Player.HasPermission(user_id,permission)
+    assert(user_id, '[LRL] Player_id não definido')
+    assert(permission, '[LRL] Permission não definido')
     local result =  LRL.Server.GetUserDatatable(user_id)
     local dataPermission = result["permission"] or result["perm"] or result["groups"] or {}
     if type(dataPermission)=="lua_rapidjson_object" then dataPermission = json.encode(dataPermission) end
@@ -36,6 +39,8 @@ function LRL.Player.HasPermission(user_id,permission)
 end
 
 function LRL.Player.SetPermission(user_id, permission)
+    assert(user_id, '[LRL] Player_id não definido')
+    assert(permission, '[LRL] Permission não definido')
     local result =  LRL.Server.GetUserDatatable(user_id)
 
     permission = tostring(permission)
@@ -67,6 +72,8 @@ function LRL.Player.SetPermission(user_id, permission)
 end
 
 function LRL.Player.RemovePermission(user_id, permission)
+    assert(user_id, '[LRL] Player_id não definido')
+    assert(permission, '[LRL] Permission não definido')
     local result = LRL.Server.GetUserDatatable(user_id)
 
     permission = tostring(permission)
