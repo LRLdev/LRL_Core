@@ -7,7 +7,7 @@ function LRL.Server.GetUserIdentity(player_id)
     if result then
         identity = {
             firstname = result.name,
-            lastname = result.lastname or result.name2,
+            lastname = result.lastname or result.name2 or result.firstname,
             registration = result.serial or result.registration or '',
             phone = result.phone or phone
         }
@@ -18,12 +18,14 @@ function LRL.Server.GetUserIdentity(player_id)
 end
 
 function LRL.Player.HasPermission(user_id,permission)
-
-    local result =  LRL.Server.GetUserDatatable(user_id)   
-    local dataPermission = result["permission"] or result["perm"] or {}
-
+    local result =  LRL.Server.GetUserDatatable(user_id)
+    local dataPermission = result["permission"] or result["perm"] or result["groups"] or {}
+    if type(dataPermission)=="lua_rapidjson_object" then dataPermission = json.encode(dataPermission) end
+    
+    
     if result~=nil then
         for k,v in pairs(dataPermission) do
+            print(k,v)
             if k==permission then
                 return true
             end
