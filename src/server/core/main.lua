@@ -4,10 +4,10 @@ LRL.UseableItems = {}
 LRL.Server = {}
 LRL.Player = {}
 
-
-
 framework = nil
 
+-- Exports inits
+-- @returns All the functions inside the core
 exports('initCore', function()
     return LRL
 end)
@@ -54,8 +54,6 @@ function Init()
     print('[LRL] Core Initialized.')   
     print('[LRL] Framework: '..framework)   
     assert(framework~=nil, '[LRL] Database nao encontrado')
-
 end
-
 
 CreateThread(Init) -- Initilize the core

@@ -31,7 +31,10 @@ function LRL.Server.SetUserFines(player_id,value)
 end
 
 
---
+-- Add user money
+-- Add money inside the bank of the player
+-- @param player_id The player id.
+-- @param value The value
 function LRL.Server.AddUserMoney(player_id,value)
     assert(player_id, '[LRL] Player_id não definido')
     assert(value, '[LRL] Value não definido')
@@ -44,6 +47,9 @@ function LRL.Server.AddUserMoney(player_id,value)
     end
 end
 
+-- Get user bank
+-- Gets the bank value of the player
+-- @param player_id The player id.
 function LRL.Server.GetUserBank(player_id)
     assert(player_id, '[LRL] Player_id não definido')
     
@@ -56,6 +62,10 @@ function LRL.Server.GetUserBank(player_id)
     end
 end
 
+-- Remove user money
+-- Remove money inside the bank of the player
+-- @param player_id The player id.
+-- @param value The value of the money.
 function LRL.Server.RemoveUserMoney(user_id,value)
     assert(user_id, '[LRL] TryFullPayment - User_id não definido')
     assert(value, '[LRL] TryFullPayment - Value não definido')

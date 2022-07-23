@@ -10,6 +10,7 @@ queries = {
         ['get_user_money'] = 'SELECT bank FROM summerz_characters WHERE id = @id',
         ['get_user_datatable'] = 'SELECT dvalue FROM summerz_playerdata WHERE user_id = @user_id AND dkey = "Datatable"',
         ['get_user_data'] = 'SELECT dvalue FROM summerz_playerdata WHERE user_id = @user_id AND dkey = @key',
+        ['set_user_data'] = 'REPLACE INTO summerz_playerdata(user_id,dkey,dvalue) VALUES(@user_id,@key,@value)',
         ['get_server_data'] = 'SELECT dvalue FROM summerz_entitydata WHERE dkey = @dkey',
         ['set_server_data'] = 'REPLACE INTO summerz_entitydata(dkey,dvalue) VALUES(@dkey,@value)'
     },
@@ -17,6 +18,7 @@ queries = {
         ['get_identity'] = 'SELECT * FROM vrp_user_identities WHERE user_id = ?',
         ['get_fines'] = 'SELECT dvalue FROM vrp_user_data WHERE user_id = @user_id AND dkey = "vRP:multas"',
         ['set_fines'] = 'REPLACE INTO vrp_user_data(user_id,dkey,dvalue) VALUES(@id,"vRP:multas",@fines)',
+        ['add_prison'] = 'REPLACE INTO vrp_user_data(user_id,dkey,dvalue) VALUES(@id,"vRP:prisao",@fines)',
         ['add_user_money'] = 'UPDATE vrp_user_moneys SET bank = bank + @bank WHERE id = @id',
         ['del_user_money'] = 'UPDATE vrp_user_moneys SET bank = bank - @bank WHERE user_id = @id',
         ['get_user_money'] = "SELECT bank FROM vrp_user_moneys WHERE user_id = @id",

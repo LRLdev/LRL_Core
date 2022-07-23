@@ -1,6 +1,8 @@
 LRL.Server.playersSource = {}
 LRL.Server.playersIds = {}
 
+
+-- Event to handle a vRP player connection
 AddEventHandler("vRP:playerSpawn",function(user_id,source)
     assert(user_id, '[LRL] User_id não definido')
     assert(source, '[LRL] Source não definido')
@@ -16,7 +18,7 @@ AddEventHandler("playerConnect",function(user_id,source)
     LRL.Server.playersIds[source] = user_id
 end)
 
-
+-- Event to handle a player disconnection
 AddEventHandler("playerDropped",function(reason)
     local source = source
     local user_id = LRL.Server.playersIds[source]

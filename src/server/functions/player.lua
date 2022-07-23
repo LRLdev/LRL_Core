@@ -1,5 +1,6 @@
--- GetUserIdentity
--- Returns the user identity of the player.
+-- Get user identity
+-- Get identity from user 
+-- @param player_id The player id.
 function LRL.Server.GetUserIdentity(player_id)
     assert(player_id, '[LRL] Player_id não definido')
     local result = MySQL.single.await(queries[framework]['get_identity'],{ player_id })
@@ -18,6 +19,10 @@ function LRL.Server.GetUserIdentity(player_id)
     end
 end
 
+-- Has permission
+-- Verify if the player has the permission
+-- @param user_id The player id.
+-- @param permission The permission to verify.
 function LRL.Player.HasPermission(user_id,permission)
     assert(user_id, '[LRL] Player_id não definido')
     assert(permission, '[LRL] Permission não definido')
@@ -38,6 +43,10 @@ function LRL.Player.HasPermission(user_id,permission)
     return false
 end
 
+-- Set Permission
+-- Set permission to the player
+-- @param user_id The player id.
+-- @param permission The permission to verify.
 function LRL.Player.SetPermission(user_id, permission)
     assert(user_id, '[LRL] Player_id não definido')
     assert(permission, '[LRL] Permission não definido')
@@ -71,6 +80,10 @@ function LRL.Player.SetPermission(user_id, permission)
 
 end
 
+-- Remove Permission
+-- Remove player permission
+-- @param user_id The player id.
+-- @param permission The permission to verify.
 function LRL.Player.RemovePermission(user_id, permission)
     assert(user_id, '[LRL] Player_id não definido')
     assert(permission, '[LRL] Permission não definido')
@@ -100,6 +113,10 @@ function LRL.Player.RemovePermission(user_id, permission)
     end
 end
 
+-- Add prison
+-- Add prison to the player
+-- @param user_id The player id.
+-- @param value How much time the player will be in prison.
 function LRL.Player.AddPrison(player_id,value)
     assert(player_id, '[LRL] Prison - Player_id não definido')
     assert(value, '[LRL] Prison - Value não definido')
