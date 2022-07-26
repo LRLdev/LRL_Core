@@ -126,6 +126,6 @@ function LRL.Player.AddPrison(player_id,value)
     if result then
         return true
     else
-        error("[LRL] Nao foi possivel adicionar multas ao jogador")
+        error("[LRL] Nao foi possivel adicionar prisão ao jogador")
     end
 end
