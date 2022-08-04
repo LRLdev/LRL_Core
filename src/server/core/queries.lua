@@ -17,7 +17,7 @@ queries = {
     ['vRP'] = {
         ['get_identity'] = 'SELECT * FROM vrp_user_identities WHERE user_id = ?',
         ['get_fines'] = 'SELECT dvalue as multas FROM vrp_user_data WHERE user_id = @id AND dkey = "vRP:multas"',
-        ['set_fines'] = 'REPLACE INTO vrp_user_data(user_id,dkey,dvalue) VALUES(@id,"vRP:multas",@fines)',
+        ['set_fines'] = 'UPDATE vrp_user_data SET dvalue = dvalue + @fines WHERE user_id = @id AND dkey = "vRP:multas"',
         ['add_prison'] = 'REPLACE INTO vrp_user_data(user_id,dkey,dvalue) VALUES(@id,"vRP:prisao",@fines)',
         ['add_user_money'] = 'UPDATE vrp_user_moneys SET bank = bank + @bank WHERE user_id = @id',
         ['del_user_money'] = 'UPDATE vrp_user_moneys SET bank = bank - @bank WHERE user_id = @id',

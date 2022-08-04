@@ -4,7 +4,6 @@
 function LRL.Server.GetUserIdentity(player_id)
     assert(player_id, '[LRL] Player_id não definido')
     local result = MySQL.single.await(queries[framework]['get_identity'],{ player_id })
-    
     local identity = {}
     if result then
         identity = {
