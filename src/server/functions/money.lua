@@ -20,10 +20,7 @@ end
 function LRL.Server.SetUserFines(player_id,value)
     assert(player_id, '[LRL] Player_id não definido')
     assert(value, '[LRL] Value não definido')
-
-    local valorMulta = GetUserFines(dataJson.user) or 0
-
-    
+        
     local result = MySQL.query.await(queries[framework]['set_fines'],{ fines = value, id = player_id })
 
     if result then
