@@ -16,6 +16,7 @@ end)
 function Init()
     print('[LRL] Initializing Core...')
     local databases = {
+        ["crv6"] = "fidentity"
         ["crv5"] = "summerz_fidentity",
         ["vRP"] = "vrp_user_identities",
         ["bahamas"] = "summerz_characters",
@@ -50,6 +51,8 @@ function Init()
 
         end
     end
+
+    
     
     print('[LRL] Core Initialized.')   
     print('[LRL] Framework: '..framework)   

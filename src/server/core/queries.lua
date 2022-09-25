@@ -42,4 +42,18 @@ queries = {
         ['get_server_data'] = 'SELECT dvalue FROM summerz_entitydata WHERE dkey = @dkey',
         ['set_server_data'] = 'REPLACE INTO summerz_entitydata(dkey,dvalue) VALUES(@dkey,@value)'
     },
+    ['crv6'] = {
+        ['get_identity'] = 'SELECT * FROM characters WHERE id = ?',
+        ['get_fines'] = 'SELECT fines AS multas FROM characters WHERE id = @id',
+        ['set_fines'] = 'UPDATE characters SET fines = fines + @fines WHERE id = @id',
+        ['add_prison'] = 'UPDATE characters SET prison = @prison WHERE id = @user_id',
+        ['add_user_money'] = 'UPDATE bank SET value = value + @bank WHERE user_id = @id AND mode = "Private" AND owner = 1',
+        ['del_user_money'] = 'UPDATE bank SET value = value - @bank WHERE user_id = @id AND mode = "Private" AND owner = 1',
+        ['get_user_money'] = 'SELECT bank FROM characters WHERE id = @id',
+        ['get_user_datatable'] = 'SELECT dvalue FROM playerdata WHERE user_id = @user_id AND dkey = "Datatable"',
+        ['get_user_data'] = 'SELECT dvalue FROM playerdata WHERE user_id = @user_id AND dkey = @key',
+        ['set_user_data'] = 'REPLACE INTO playerdata(user_id,dkey,dvalue) VALUES(@user_id,@key,@value)',
+        ['get_server_data'] = 'SELECT dvalue FROM entitydata WHERE dkey = @dkey',
+        ['set_server_data'] = 'REPLACE INTO entitydata(dkey,dvalue) VALUES(@dkey,@value)'
+    },
 }

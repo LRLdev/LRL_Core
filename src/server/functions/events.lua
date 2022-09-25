@@ -18,6 +18,13 @@ AddEventHandler("playerConnect",function(user_id,source)
     LRL.Server.playersIds[source] = user_id
 end)
 
+AddEventHandler("Connect",function(user_id,source)
+    assert(user_id, '[LRL] User_id não definido')
+    assert(source, '[LRL] Source não definido')
+    LRL.Server.playersSource[user_id] = source
+    LRL.Server.playersIds[source] = user_id
+end)
+
 -- Event to handle a player disconnection
 AddEventHandler("playerDropped",function(reason)
     local source = source
